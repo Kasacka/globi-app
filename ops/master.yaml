@@ -1,0 +1,2 @@
+networkConfig:
+  ingressIPNetworkCIDR: 172.20.10.3/28

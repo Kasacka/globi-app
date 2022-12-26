@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: globi-envs
+data:
+  nofPlayers: "3"
+  playerPrefix: "google-"
+  playerPostfix: "-microsoft"
+  port: "3000"

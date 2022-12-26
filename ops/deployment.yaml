@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: globi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: globi-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: globi-app
+    spec:
+      containers:
+        - name: globi-app
+          image: kasacka/globi-app:3.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: GLOBI_NOF_PLAYERS
+              valueFrom:
+                configMapKeyRef:
+                  name: globi-envs
+                  key: nofPlayers
+            - name: GLOBI_PLAYER_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: globi-envs
+                  key: playerPrefix
+            - name: GLOBI_PLAYER_POSTFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: globi-envs
+                  key: playerPostfix
+            - name: GLOBI_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: globi-envs
+                  key: port
